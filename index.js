@@ -23,3 +23,10 @@ connectDB().then(() => {
 }).catch(error => {
   console.log("Connection failed", error);
 });
+
+process.on("SIGINT", () => {
+  mongoose.connection.close(() => {
+    console.log("MongoDB connection closed");
+    process.exit(0);
+  });
+});
