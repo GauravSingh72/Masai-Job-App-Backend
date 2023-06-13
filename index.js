@@ -16,11 +16,10 @@ app.get("/", (req, res) => {
 });
 app.use("/jobPosts", JobRouter);
 
-app.listen(PORT, async (req, res) => {
-  try {
-    await connectDB;
-    console.log(`connected at port ${PORT}`);
-  } catch (error) {
-    console.log("connection failded", error);
-  }
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Connected and listening on port ${PORT}`);
+  });
+}).catch(error => {
+  console.log("Connection failed", error);
 });
