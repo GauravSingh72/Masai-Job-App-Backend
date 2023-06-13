@@ -10,6 +10,6 @@ const jobSchema = new mongoose.Schema({
   contract: String,
   position: String,
   language: String,
-});
+}); 
 
 module.exports = mongoose.model("Job", jobSchema);
